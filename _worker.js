@@ -36,7 +36,9 @@ async function handleRequest(request) {
     statusText: response.statusText,
     headers: response.headers
   });
-
+  modifiedResponse.headers.delete('Vary');
+  modifiedResponse.headers.delete('Via');
+  modifiedResponse.headers.delete('Content-Security-Policy');
   modifiedResponse.headers.delete('X-Cache');
   modifiedResponse.headers.delete('X-Cache-Hits');
   modifiedResponse.headers.delete('X-Content-Type-Options');
