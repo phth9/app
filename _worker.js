@@ -57,7 +57,7 @@ async function handleRequest(request) {
   modifiedResponse.headers.delete('Report-To');
 
   
-  if (path.endsWith('.ts') || path.endsWith('.m3u8')) {
+  if (path.endsWith('.txt') || path.endsWith('.m3u8')) {
     modifiedResponse.headers.set('Content-Type', 'image/gif');
     modifiedResponse.headers.set('Content-Disposition', 'attachment; filename="videoplayback"');
   }
