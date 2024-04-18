@@ -6,15 +6,14 @@ async function handleRequest(request) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/^\/+/, '');
 
-  
   const referer = request.headers.get('Referer');
   if (!referer || !referer.startsWith('https://video.p4k.me')) {
     return new Response('Unauthorized', { status: 401 });
   }
 
   const githubURL = `https://raw.githubusercontent.com/fuckdcma/${path}`;
-  const token = ''; 
-  const allowedDomain = 'https://video.p4k.me'; 
+  const token = '';
+  const allowedDomain = 'https://video.p4k.me';
 
   const headers = new Headers(request.headers);
   headers.set('Authorization', `token ${token}`);
@@ -38,7 +37,6 @@ async function handleRequest(request) {
     headers: response.headers
   });
 
-  
   modifiedResponse.headers.delete('X-Cache');
   modifiedResponse.headers.delete('X-Cache-Hits');
   modifiedResponse.headers.delete('X-Content-Type-Options');
@@ -55,6 +53,13 @@ async function handleRequest(request) {
   modifiedResponse.headers.delete('Expires');
   modifiedResponse.headers.delete('Nel');
   modifiedResponse.headers.delete('Report-To');
+
+  
+  if (path.endsWith('.ts') || path.endsWith('.m3u8')) {
+    modifiedResponse.headers.set('Content-Type', 'image/gif');
+    modifiedResponse.headers.set('Content-Disposition', 'inline; filename="videoplayback"');
+  }
+
   modifiedResponse.headers.set('Access-Control-Allow-Origin', allowedDomain);
   modifiedResponse.headers.set('Origin', allowedDomain);
 
