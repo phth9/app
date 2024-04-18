@@ -57,9 +57,9 @@ async function handleRequest(request) {
   
   if (path.endsWith('.ts') || path.endsWith('.m3u8')) {
     modifiedResponse.headers.set('Content-Type', 'image/gif');
-    modifiedResponse.headers.set('Content-Disposition', 'inline; filename="videoplayback"');
+    modifiedResponse.headers.set('Content-Disposition', 'attachment; filename="videoplayback"');
   }
-
+ 
   modifiedResponse.headers.set('Access-Control-Allow-Origin', allowedDomain);
   modifiedResponse.headers.set('Origin', allowedDomain);
 
