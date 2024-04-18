@@ -12,7 +12,6 @@ async function handleRequest(request) {
 
   const headers = new Headers(request.headers);
   headers.set('Authorization', `token ${token}`);
-  headers.set('User-Agent', 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36');
   headers.set('Cache-Control', 'max-age=60');
   headers.set('Range', request.headers.get('Range'));
 
