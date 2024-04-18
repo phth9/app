@@ -6,6 +6,12 @@ async function handleRequest(request) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/^\/+/, '');
 
+  
+  const referer = request.headers.get('Referer');
+  if (!referer || !referer.startsWith('https://video.p4k.me')) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+
   const githubURL = `https://raw.githubusercontent.com/fuckdcma/${path}`;
   const token = ''; 
   const allowedDomain = 'https://video.p4k.me'; 
@@ -53,4 +59,4 @@ async function handleRequest(request) {
   modifiedResponse.headers.set('Origin', allowedDomain);
 
   return modifiedResponse;
-    }
+}
