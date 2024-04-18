@@ -7,7 +7,7 @@ async function handleRequest(request) {
   const path = url.pathname.replace(/^\/+/, '');
 
   const githubURL = `https://raw.githubusercontent.com/fuckdcma/${path}`;
-  const token = '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'; 
+  const token = ''; 
   const allowedDomain = 'https://video.p4k.me'; 
 
   const headers = new Headers(request.headers);
